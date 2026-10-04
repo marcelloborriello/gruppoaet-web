@@ -8,12 +8,10 @@
   {% for p in posts %}
     <li class="news-item">
       {% if p.thumb %}<a href="{{ p.path }}" class="news-item__img"><img src="{{ p.thumb }}" alt="" loading="lazy"></a>{% endif %}
-      <div>
-        <time datetime="{{ p.date }}">{{ p.datetxt or p.date }}</time>
-        <h2><a href="{{ p.path }}">{{ p.title }}</a></h2>
-        <p>{{ p.excerpt }}</p>
-        <a class="more" href="{{ p.path }}">{{ S.read_more }}</a>
-      </div>
+      <time datetime="{{ p.date }}">{{ p.datetxt or p.date }}</time>
+      <h2><a href="{{ p.path }}">{{ p.title }}</a></h2>
+      <p>{{ p.excerpt|truncate(230, True, ' ...') }}</p>
+      <a class="btn" href="{{ p.path }}">{{ S.read_more }}</a>
     </li>
   {% endfor %}
   </ul>

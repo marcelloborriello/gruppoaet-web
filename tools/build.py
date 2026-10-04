@@ -181,11 +181,18 @@ def group_blocks(blocks):
         out.append(b); i += 1
     return out
 
+# sfondi delle slide (dal CSS Elementor della home)
+import glob
+SLIDE_BG = {}
+for f in glob.glob(str(SRC_IMG / 'wp-content/uploads/elementor/css/post-*.css*')):
+    for key, url in re.findall(r'repeater-item-([a-z0-9]+) \.swiper-slide-bg\{[^}]*background-image:url\(([^)]+)\)', open(f, encoding='utf-8', errors='ignore').read()):
+        SLIDE_BG[key] = 'wp-content/uploads/' + re.sub(r'^(\.\./)+', '', url.strip('"\''))
+
 # ---------- rendering ----------
 env = Environment(loader=FileSystemLoader(str(TOOLS / 'templates')), autoescape=select_autoescape(['html']), trim_blocks=True, lstrip_blocks=True)
 env.filters['image'] = image
 env.filters['clean'] = clean_html
-env.filters['titlecase'] = titlecase
+env.filters['titlecase'] = lambda x: x
 env.filters['clean_href'] = rewrite_href
 
 def nav_for(lang):
@@ -215,9 +222,9 @@ def posts_for(lang):
     ps.sort(key=lambda x: x[1]['date'], reverse=True)
     res = []
     for e, c in ps:
-        title = next((b['text'] for b in c['blocks'] if b['t'] == 'h'), c['wp_title'])
+        title = c['wp_title']
         datetxt = next((re.sub('<[^>]+>','',b['html']).strip() for b in c['blocks'] if b['t'] == 'txt' and re.fullmatch(r'\s*\d{1,2} \w+ \d{4}\s*', re.sub('<[^>]+>','',b['html']))), None)
-        res.append({'path': e['path_' + lang], 'title': titlecase(title), 'date': c['date'][:10], 'datetxt': datetxt, 'excerpt': c['excerpt'], 'thumb': image(c['thumb']) if c['thumb'] else None})
+        res.append({'path': e['path_' + lang], 'title': title, 'date': c['date'][:10], 'datetxt': datetxt, 'excerpt': c['excerpt'], 'thumb': image(c['thumb']) if c['thumb'] else None})
     return res
 
 def base_ctx(entry, lang):
@@ -227,10 +234,10 @@ def base_ctx(entry, lang):
             'legal_path': path_for('dati-societari', lang), 'privacy_path': path_for('privacy-policy-2', lang),
             'cookie_path': path_for('cookie-policy', lang), 'projects_path': path_for('progetti-in-corso', lang), 'contact_path': path_for('contatti', lang), 'news_path': path_for('news', lang),
             'footer_links': [(l, path_for(s, lang)) for l, s in (
-                [('Armamento','armamento'),('Impianti tecnologici','impianti-tecnologici'),('Opere civili','opere-civili'),('Progetti in corso','progetti-in-corso'),('Progetti completati','progetti-completati'),('Certificazioni','certificazioni'),('Il gruppo','il-gruppo')] if lang=='it' else
-                [('Track systems','armamento'),('Technological systems','impianti-tecnologici'),('Civil works','opere-civili'),('Ongoing projects','progetti-in-corso'),('Completed projects','progetti-completati'),('Certifications','certificazioni'),('The group','il-gruppo')])],
+                [('Armamento','armamento'),('Opere civili','opere-civili'),('Progetti in corso','progetti-in-corso'),('Progetti completati','progetti-completati'),('Il gruppo','il-gruppo')] if lang=='it' else
+                [('Track systems','armamento'),('Civil works','opere-civili'),('Ongoing projects','progetti-in-corso'),('Completed projects','progetti-completati'),('The group','il-gruppo')])],
             'footer_logos': [(image(p), a) for p, a in SITE['footer_logos']],
-            'logo_blue': '/assets/img/logo-aet-group.png', 'logo_white': image('wp-content/uploads/2022/10/logo_gruppoaet_500_500-300x300.webp')}
+            'logo_white': image('wp-content/uploads/2022/10/logo_gruppoaet_500_500-300x300.webp'), 'logo_blue': '/assets/img/logo-aet-group.png'}
 
 def page_title_from_blocks(c):
     hs = [b for b in c['blocks'] if b['t'] == 'h']
@@ -239,18 +246,22 @@ def page_title_from_blocks(c):
 def build():
     if (OUT / 'assets/img').exists():
         for f in (OUT / 'assets/img').iterdir():
-            if f.name != 'logo-aet-group.png': f.unlink()
+            if f.name not in ('logo-aet-group.png', 'flag-gb.svg', 'flag-it.svg'): f.unlink()
     for e in SITE['pages']:
         for lang in ('it', 'en'):
             c = CONTENT[e[lang]]; ctx = base_ctx(e, lang)
             blocks = list(c['blocks'])
             kind = e['kind']
             if kind == 'home':
-                ctx.update({'hero': image(SITE['hero_image'], 2000), 'projects': [dict(p, img=image(p['img'], 1000)) for p in SITE['home_projects'][lang]],
-                            'posts': posts_for(lang)[:3],
-                            'areas': [{'icon': image(blocks[i]['src']), 'title': blocks[i+1]['text'], 'text': blocks[i+2]['html'], 'href': rewrite_href(blocks[i+3]['href'])} for i in range(1, 12, 4)]})
+                sl = [b for b in blocks if b['t'] == 'slides']
+                def mk(slides, maxw):
+                    return [{'heading': x['heading'], 'desc': x['desc'], 'btn': x['btn'], 'href': rewrite_href(x['href']), 'bg': image(SLIDE_BG.get((x['key'] or '').replace('elementor-repeater-item-', '')), maxw)} for x in slides]
+                ctx.update({'hero_slides': mk(sl[0]['slides'], 1920), 'project_slides': mk(sl[1]['slides'], 1920),
+                            'posts': posts_for(lang)[:5],
+                            'areas': [{'icon': image(blocks[i]['src']), 'title': blocks[i+1]['text'], 'text': blocks[i+2]['html'], 'href': rewrite_href(blocks[i+3]['href']), 'btn': blocks[i+3]['text']} for i in range(1, 12, 4)],
+                            'news_title': next((b['text'] for b in blocks if b['t'] == 'h' and b['level'] == 'h2' and 'NEWS' in b['text'].upper()), S[lang]['latest_news'])})
                 ctx['title'] = 'Gruppo AET – Apparati Elettromeccanici e Telecomunicazioni'
-                ctx['desc'] = S[lang]['about']
+                ctx['desc'] = S[lang]['about']; ctx['hero'] = ctx['hero_slides'][0]['bg']
                 write(e['path_' + lang], env.get_template('home.html').render(**ctx)); continue
             # hero: prima immagine + primo titolo
             hero = None
@@ -259,7 +270,6 @@ def build():
             title = c['wp_title']
             if blocks and blocks[0]['t'] == 'h':
                 title = blocks.pop(0)['text']
-            title = titlecase(title)
             # per i post: la data è il primo txt dopo il titolo
             datetxt = None
             if kind == 'post' and blocks and blocks[0]['t'] == 'txt' and re.fullmatch(r'\s*\d{1,2} \w+ \d{4}\s*', re.sub('<[^>]+>', '', blocks[0]['html'])):
@@ -269,7 +279,10 @@ def build():
             ctx.update({'hero': hero, 'title': title, 'page_title': title + ' – Gruppo AET', 'sections': sections, 'datetxt': datetxt, 'date': c['date'][:10],
                         'desc': c['excerpt'] or next((re.sub('<[^>]+>', '', b['html'])[:160] for b in blocks if b['t'] == 'txt'), S[lang]['about'])})
             if kind == 'news': ctx['posts'] = posts_for(lang)
-            if kind == 'contact': ctx['offices'] = SITE['offices']
+            if kind == 'contact':
+                ctx['offices'] = SITE['offices']
+                ctx['maps'] = [b['src'] for b in blocks if b['t'] == 'map']
+                ctx['company_line'] = next((b['html'] for b in blocks if b['t'] == 'txt' and 'IVA' in b['html'].upper() and 'REA' in b['html'].upper()), None)
             tpl = {'page': 'page.html', 'post': 'post.html', 'news': 'news.html', 'contact': 'contact.html'}[kind]
             write(e['path_' + lang], env.get_template(tpl).render(**ctx))
     # 404

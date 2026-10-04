@@ -1,7 +1,7 @@
 {% macro render(sections, S) %}
 {% for s in sections %}
   {% if s.t == 'h' %}
-    {% if s.level == 'h2' %}<h2 class="rail">{{ s.text|titlecase }}</h2>{% else %}<{{ s.level }}>{{ s.text|titlecase }}</{{ s.level }}>{% endif %}
+    {% if s.level == 'h2' %}<h2>{{ s.text|titlecase }}</h2>{% else %}<{{ s.level }}>{{ s.text|titlecase }}</{{ s.level }}>{% endif %}
   {% elif s.t == 'txt' %}
     <div class="prose">{{ s.html|clean|safe }}</div>
   {% elif s.t == 'cards' %}

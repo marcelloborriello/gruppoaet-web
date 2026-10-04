@@ -21,7 +21,7 @@
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="{{ '/' if lang == 'it' else '/en/' }}" aria-label="Gruppo AET">
-      <img src="{{ logo_blue }}" alt="" width="36" height="46"><span>Gruppo <strong>AET</strong></span>
+      <img src="{{ logo_white }}" alt="" width="75" height="75"><span>Gruppo AET</span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" data-open="{{ S.menu }}" data-close="{{ S.close }}">
       <span class="nav-toggle__bars" aria-hidden="true"></span><span class="nav-toggle__label">{{ S.menu }}</span>
@@ -42,7 +42,8 @@
         <li><a href="{{ it.href }}"{% if it.href == path %} aria-current="page"{% endif %}>{{ it.label }}</a></li>
         {% endif %}
       {% endfor %}
-        <li class="lang"><a href="{{ alt_href }}" hreflang="{{ S.other_lang }}" lang="{{ S.other_lang }}">{{ S.switch }}</a></li>
+        <li class="lang"><a href="{{ alt_href }}" hreflang="{{ S.other_lang }}" lang="{{ S.other_lang }}" title="{{ S.switch }}"><img src="/assets/img/flag-{{ 'gb' if lang == 'it' else 'it' }}.svg" alt="{{ S.switch }}" width="20" height="13"></a></li>
+        <li class="linkedin"><a href="{{ site.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg></a></li>
       </ul>
     </nav>
   </div>
@@ -53,9 +54,8 @@
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div class="footer-about">
-      <img src="{{ logo_white }}" alt="AET group" width="72" height="72">
+      <h2>{{ S.footer_about }}</h2>
       <p>{{ S.about }}</p>
-      <a class="footer-linkedin" href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
     </div>
     <div>
       <h2>{{ S.footer_links }}</h2>
@@ -63,23 +63,17 @@
       {% for l, h in footer_links %}<li><a href="{{ h }}">{{ l }}</a></li>{% endfor %}
       </ul>
     </div>
-    <div>
-      <h2>{{ S.footer_offices }}</h2>
-      <address>
-        <strong>{{ S.legal_office }}</strong><br>{{ site.offices.legal.lines|join('<br>')|safe }}<br>Tel. {{ site.offices.legal.tel }}
-      </address>
-      <address>
-        <strong>{{ S.operating_office }}</strong><br>{{ site.offices.operating.lines|join('<br>')|safe }}<br>Tel. {{ site.offices.operating.tel }}
-      </address>
-      <p><a href="mailto:{{ site.offices.email }}">{{ site.offices.email }}</a><br><a href="{{ contact_path }}">{{ S.write_us }}</a></p>
+    <div class="footer-contact">
+      <h2>{{ S.footer_contacts }}</h2>
+      <a class="btn btn--upper" href="{{ contact_path }}">{{ S.contact_us }}</a>
+      <img src="{{ footer_logos[5][0] }}" alt="GDPR" loading="lazy">
+    </div>
+    <div class="footer-logos">
+      {% for src, alt in footer_logos[:5] %}<img src="{{ src }}" alt="{{ alt }}" loading="lazy">{% endfor %}
     </div>
   </div>
-  <div class="wrap footer-logos">
-    {% for src, alt in footer_logos %}<img src="{{ src }}" alt="{{ alt }}" loading="lazy" height="56">{% endfor %}
-  </div>
-  <div class="wrap footer-legal">
-    <p>© AET S.r.l. · {{ S.rights }} · P. IVA 05051750635</p>
-    <p><a href="{{ legal_path }}">{{ S.company_data }}</a> · <a href="{{ privacy_path }}">{{ S.privacy }}</a> · <a href="{{ cookie_path }}">{{ S.cookies }}</a></p>
+  <div class="footer-legal">
+    <p>© Copyright AET srl &nbsp;|&nbsp; {{ S.rights }} &nbsp;|&nbsp; <a href="{{ legal_path }}">{{ S.company_data }}</a> &nbsp;|&nbsp; <a href="{{ privacy_path }}">{{ S.privacy }}</a> &nbsp;|&nbsp; <a href="{{ cookie_path }}">{{ S.cookies }}</a></p>
   </div>
 </footer>
 <script src="/assets/js/site.js" defer></script>
