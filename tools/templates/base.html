@@ -9,8 +9,8 @@
 <link rel="alternate" hreflang="{{ S.lang }}" href="{{ canonical }}">
 <link rel="alternate" hreflang="{{ S.other_lang }}" href="{{ site.domain }}{{ alt_href }}">
 <link rel="icon" href="/assets/img/logo-aet-group.png" type="image/png">
-<link rel="stylesheet" href="/assets/css/fonts.css">
-<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/fonts.css?v={{ v_fonts }}">
+<link rel="stylesheet" href="/assets/css/site.css?v={{ v_css }}">
 <meta property="og:title" content="{{ title }}">
 <meta property="og:description" content="{{ desc|striptags|truncate(160, True) }}">
 <meta property="og:url" content="{{ canonical }}">
@@ -76,6 +76,6 @@
     <p>© Copyright AET srl &nbsp;|&nbsp; {{ S.rights }} &nbsp;|&nbsp; <a href="{{ legal_path }}">{{ S.company_data }}</a> &nbsp;|&nbsp; <a href="{{ privacy_path }}">{{ S.privacy }}</a> &nbsp;|&nbsp; <a href="{{ cookie_path }}">{{ S.cookies }}</a></p>
   </div>
 </footer>
-<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/site.js?v={{ v_js }}" defer></script>
 </body>
 </html>

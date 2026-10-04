@@ -227,9 +227,13 @@ def posts_for(lang):
         res.append({'path': e['path_' + lang], 'title': title, 'date': c['date'][:10], 'datetxt': datetxt, 'excerpt': c['excerpt'], 'thumb': image(c['thumb']) if c['thumb'] else None})
     return res
 
+import hashlib
+def _v(rel):
+    f = OUT / rel
+    return hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else '1'
 def base_ctx(entry, lang):
     other = 'en' if lang == 'it' else 'it'
-    return {'S': S[lang], 'site': SITE, 'lang': lang, 'nav': nav_for(lang), 'alt_href': entry['path_' + other],
+    return {'v_css': _v('assets/css/site.css'), 'v_fonts': _v('assets/css/fonts.css'), 'v_js': _v('assets/js/site.js'),'S': S[lang], 'site': SITE, 'lang': lang, 'nav': nav_for(lang), 'alt_href': entry['path_' + other],
             'path': entry['path_' + lang], 'canonical': SITE['domain'] + entry['path_' + lang],
             'legal_path': path_for('dati-societari', lang), 'privacy_path': path_for('privacy-policy-2', lang),
             'cookie_path': path_for('cookie-policy', lang), 'projects_path': path_for('progetti-in-corso', lang), 'contact_path': path_for('contatti', lang), 'news_path': path_for('news', lang),
