@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="hero" style="--hero:url('{{ hero }}')">
+  <div class="hero__inner wrap">
+    <p class="hero__kicker">{{ S.hero_kicker }}</p>
+    <h1>{{ S.hero_title }}</h1>
+    <div><p class="hero__text">{{ S.hero_text }}</p><a class="btn" href="{{ areas[0].href }}">{{ S.hero_cta }}</a></div>
+  </div>
+</section>
+<section class="wrap areas" aria-label="{{ S.areas_title }}">
+  <ul>
+  {% for a in areas %}
+    <li class="area"><h2><a href="{{ a.href }}">{{ a.title|capitalize }}</a></h2><div class="prose">{{ a.text|clean|safe }}</div><a class="more" href="{{ a.href }}">{{ S.read_more }}</a></li>
+  {% endfor %}
+  </ul>
+</section>
+<section class="wrap projects">
+  <div class="section-head"><h2>{{ S.projects_title }}</h2><a class="more" href="{{ projects_path }}">{{ S.all_projects }}</a></div>
+  <ul class="projects__grid">
+  {% for p in projects %}
+    <li><a href="{{ projects_path }}"><img src="{{ p.img }}" alt="" loading="lazy"><span><strong>{{ p.title }}</strong><em>{{ p.sub }}</em></span></a></li>
+  {% endfor %}
+  </ul>
+</section>
+<section class="wrap latest">
+  <div class="section-head"><h2>{{ S.latest_news|capitalize }}</h2><a class="more" href="{{ news_path }}">{{ S.all_news }}</a></div>
+  <ul class="news-cards">
+  {% for p in posts[:4] %}
+    <li><time datetime="{{ p.date }}">{{ p.datetxt or p.date }}</time><div><h3><a href="{{ p.path }}">{{ p.title }}</a></h3><p>{{ p.excerpt|truncate(160, True) }}</p></div></li>
+  {% endfor %}
+  </ul>
+</section>
+{% endblock %}

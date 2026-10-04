@@ -1,0 +1,53 @@
+{% macro render(sections, S) %}
+{% for s in sections %}
+  {% if s.t == 'h' %}
+    {% if s.level == 'h2' %}<h2 class="rail">{{ s.text|titlecase }}</h2>{% else %}<{{ s.level }}>{{ s.text|titlecase }}</{{ s.level }}>{% endif %}
+  {% elif s.t == 'txt' %}
+    <div class="prose">{{ s.html|clean|safe }}</div>
+  {% elif s.t == 'cards' %}
+    <ul class="cards">
+    {% for c in s.list %}
+      <li class="card">
+        <img src="{{ c.img|image(1200) }}" alt="{{ c.alt or c.title }}" loading="lazy">
+        <div class="card__body"><h3>{{ c.title|titlecase }}</h3>{% if c.desc %}<div class="prose">{{ c.desc|clean|safe }}</div>{% endif %}</div>
+      </li>
+    {% endfor %}
+    </ul>
+  {% elif s.t == 'iconlist' %}
+    <ul class="iconlist">
+    {% for it in s.list %}<li><img src="{{ it.icon|image }}" alt="" width="48" height="48" loading="lazy"><span>{{ it.text|clean|striptags }}</span></li>{% endfor %}
+    </ul>
+  {% elif s.t == 'logos' %}
+    <ul class="logos">
+    {% for it in s.list %}<li><img src="{{ it.src|image(600) }}" alt="{{ it.alt }}" loading="lazy"></li>{% endfor %}
+    </ul>
+  {% elif s.t == 'figure' %}
+    <figure class="figure">{% if s.href %}<a href="{{ s.href }}">{% endif %}<img src="{{ s.img|image(1600) }}" alt="{{ s.alt }}" loading="lazy">{% if s.href %}</a>{% endif %}{% if s.caption %}<figcaption>{{ s.caption }}</figcaption>{% endif %}</figure>
+  {% elif s.t == 'downloads' %}
+    <ul class="downloads">
+    {% for d in s.list %}
+      <li><a href="{{ d.href|clean_href }}" download><span class="downloads__icon" aria-hidden="true">PDF</span><span><strong>{{ d.desc|striptags or d.title }}</strong><small>{{ S.download_pdf }}</small></span></a></li>
+    {% endfor %}
+    </ul>
+  {% elif s.t == 'gallery' %}
+    <ul class="gallery">
+    {% for it in s.list %}<li><img src="{{ it.src|image(1200) }}" alt="{{ it.alt or '' }}" loading="lazy"></li>{% endfor %}
+    </ul>
+  {% elif s.t == 'table' %}
+    <div class="table-wrap"><table>
+    {% for row in s.rows %}
+      {% set rowi = loop.index0 %}
+      <tr>{% for cell in row %}{% if rowi == 0 %}<th>{{ cell|striptags }}</th>{% else %}<td>{{ cell|clean|safe }}</td>{% endif %}{% endfor %}</tr>
+    {% endfor %}
+    </table></div>
+  {% elif s.t == 'timeline' %}
+    <ol class="timeline">
+    {% for ev in s.events %}
+      <li><time>{{ ev.year }}</time><div><h3>{{ ev.title }}</h3><div class="prose">{{ ev.desc|clean|safe }}</div></div></li>
+    {% endfor %}
+    </ol>
+  {% elif s.t == 'btn' %}
+    <p><a class="btn" href="{{ s.href|clean_href }}">{{ s.text }}</a></p>
+  {% endif %}
+{% endfor %}
+{% endmacro %}

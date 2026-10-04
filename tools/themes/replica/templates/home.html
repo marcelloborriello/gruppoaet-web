@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% macro arrows() %}
+  <button class="slider__btn slider__btn--prev" type="button" aria-label="{{ S.prev }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="slider__btn slider__btn--next" type="button" aria-label="{{ S.next }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+{% endmacro %}
+{% block main %}
+<section class="slider slider--hero" data-slider data-autoplay="5000" aria-roledescription="carousel">
+  <div class="slider__track">
+  {% for s in hero_slides %}
+    <div class="slide"{% if loop.first %} data-active{% endif %} style="background-image:url('{{ s.bg }}')" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} / {{ hero_slides|length }}">
+      <div class="slide__inner"><div class="slide__content">
+        <h2 class="slide__heading">{{ s.heading }}</h2>
+        {% if s.desc %}<p class="slide__desc">{{ s.desc }}</p>{% endif %}
+        {% if s.btn %}<a class="btn btn--upper" href="{{ s.href }}">{{ s.btn }}</a>{% endif %}
+      </div></div>
+    </div>
+  {% endfor %}
+  </div>
+  {{ arrows() }}
+  <ol class="slider__dots" aria-hidden="true"></ol>
+</section>
+<section class="wrap areas" aria-label="{{ S.areas_title }}">
+  <ul>
+  {% for a in areas %}
+    <li class="area">
+      <img src="{{ a.icon }}" alt="" width="48" height="48">
+      <h2><a href="{{ a.href }}">{{ a.title }}</a></h2>
+      <div class="prose">{{ a.text|clean|safe }}</div>
+      <a class="btn" href="{{ a.href }}">{{ a.btn }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+<section class="slider slider--projects" data-slider data-autoplay="5000" aria-roledescription="carousel" aria-label="{{ S.projects_title }}">
+  <div class="slider__track">
+  {% for s in project_slides %}
+    <div class="slide"{% if loop.first %} data-active{% endif %} style="background-image:url('{{ s.bg }}')" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} / {{ project_slides|length }}">
+      <div class="slide__inner"><div class="slide__content">
+        <h2 class="slide__heading">{{ s.heading }}</h2>
+        {% if s.desc %}<p class="slide__desc">{{ s.desc }}</p>{% endif %}
+        {% if s.btn %}<a class="btn btn--outline" href="{{ s.href }}">{{ s.btn }}</a>{% endif %}
+      </div></div>
+    </div>
+  {% endfor %}
+  </div>
+  {{ arrows() }}
+</section>
+<section class="latest">
+  <div class="wrap">
+    <h2>{{ news_title }}</h2>
+    <div class="carousel" data-carousel>
+      <ul class="carousel__track">
+      {% for p in posts %}
+        <li>
+          {% if p.thumb %}<a href="{{ p.path }}"><img src="{{ p.thumb }}" alt="" loading="lazy"></a>{% endif %}
+          <h3><a href="{{ p.path }}">{{ p.title }}</a></h3>
+          <p>{{ p.excerpt|truncate(230, True, ' ...') }}</p>
+          <a class="btn" href="{{ p.path }}">{{ S.read_more }}</a>
+        </li>
+      {% endfor %}
+      </ul>
+      <button class="carousel__btn carousel__btn--prev" type="button" aria-label="{{ S.prev }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="carousel__btn carousel__btn--next" type="button" aria-label="{{ S.next }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+</section>
+{% endblock %}

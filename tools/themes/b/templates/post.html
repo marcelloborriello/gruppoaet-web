@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% import "_sections.html" as sec %}
+{% block main %}
+<section class="page-hero page-hero--news"{% if hero %} style="--hero:url('{{ hero }}')"{% endif %}>
+  <div class="wrap"><p class="crumb"><a href="{{ news_path }}">{{ S.news }}</a></p><h1>{{ title }}</h1>{% if datetxt %}<time datetime="{{ date }}">{{ datetxt }}</time>{% endif %}</div>
+</section>
+<article class="wrap page-body page-body--narrow">
+{{ sec.render(sections, S) }}
+<p class="back"><a href="{{ news_path }}">← {{ S.back_to_news }}</a></p>
+</article>
+{% endblock %}

@@ -9,7 +9,11 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 TOOLS = ROOT / 'tools'
-OUT = ROOT / 'site'
+SITE_ROOT = ROOT / 'site'                                  # radice pubblicata (immagini e PDF condivisi)
+THEME = os.environ.get('AET_THEME', 'replica')             # cartella in tools/themes/
+BASE = os.environ.get('AET_BASE', '').rstrip('/')          # es. /proposte/b  (vuoto = radice)
+OUT = SITE_ROOT / BASE.lstrip('/') if BASE else SITE_ROOT  # dove scrivere HTML, css, js, font del tema
+THEME_DIR = TOOLS / 'themes' / THEME
 SRC_IMG = Path(os.environ.get('AET_SRC_IMG', '/home/claude/aet/src/html-mirror/gruppoaet.it'))  # mirror con gli originali
 SITE = json.load(open(TOOLS / 'content/site.json', encoding='utf-8'))
 CONTENT = json.load(open(TOOLS / 'content/content.json', encoding='utf-8'))
@@ -42,7 +46,7 @@ def image(orig, maxw=1600, quality=82):
     if not src.exists():
         print('  ! immagine mancante', orig); return None
     name = asset_name(orig)
-    dst = OUT / 'assets/img' / name
+    dst = SITE_ROOT / 'assets/img' / name
     dst.parent.mkdir(parents=True, exist_ok=True)
     ext = dst.suffix.lower()
     if ext in ('.jpg', '.jpeg', '.webp', '.png'):
@@ -61,7 +65,7 @@ def image(orig, maxw=1600, quality=82):
 def doc(orig):
     orig = re.sub(r'^(\.\./)+', '', orig)
     name = os.path.basename(orig)
-    dst = OUT / 'assets/docs' / name
+    dst = SITE_ROOT / 'assets/docs' / name
     dst.parent.mkdir(parents=True, exist_ok=True)
     src = SRC_IMG / orig
     if src.exists() and not dst.exists(): shutil.copy(src, dst)
@@ -189,7 +193,8 @@ for f in glob.glob(str(SRC_IMG / 'wp-content/uploads/elementor/css/post-*.css*')
         SLIDE_BG[key] = 'wp-content/uploads/' + re.sub(r'^(\.\./)+', '', url.strip('"\''))
 
 # ---------- rendering ----------
-env = Environment(loader=FileSystemLoader(str(TOOLS / 'templates')), autoescape=select_autoescape(['html']), trim_blocks=True, lstrip_blocks=True)
+from jinja2 import ChoiceLoader
+env = Environment(loader=ChoiceLoader([FileSystemLoader(str(THEME_DIR / 'templates')), FileSystemLoader(str(TOOLS / 'templates'))]), autoescape=select_autoescape(['html']), trim_blocks=True, lstrip_blocks=True)
 env.filters['image'] = image
 env.filters['clean'] = clean_html
 env.filters['titlecase'] = lambda x: x
@@ -212,10 +217,21 @@ def path_for(it_slug, lang):
         if e['it'] == it_slug: return e['path_' + lang]
     raise KeyError(it_slug)
 
+def prefix_links(htmltext):
+    """Con un base path, i link alle pagine e agli asset del tema vengono prefissati; immagini, PDF, firme restano alla radice."""
+    if not BASE: return htmltext
+    def fix(m):
+        attr, url = m.group(1), m.group(2)
+        if url.startswith(('/assets/img/', '/assets/docs/', '/firma-mail/', '/documenti/', '//')): return m.group(0)
+        return f'{attr}="{BASE}{url}"'
+    htmltext = re.sub(r'\b(href|src|action)="(/[^"]*)"', fix, htmltext)
+    htmltext = re.sub(r"url\('(/assets/(?:css|fonts)/[^']*)'\)", lambda m: f"url('{BASE}{m.group(1)}')", htmltext)
+    return htmltext
+
 def write(path, htmltext):
     p = OUT / path.lstrip('/') / 'index.html'
     p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(htmltext, encoding='utf-8')
+    p.write_text(prefix_links(htmltext), encoding='utf-8')
 
 def posts_for(lang):
     ps = [(e, CONTENT[e[lang]]) for e in SITE['pages'] if e['kind'] == 'post']
@@ -229,11 +245,11 @@ def posts_for(lang):
 
 import hashlib
 def _v(rel):
-    f = OUT / rel
+    f = THEME_DIR / rel
     return hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else '1'
 def base_ctx(entry, lang):
     other = 'en' if lang == 'it' else 'it'
-    return {'v_css': _v('assets/css/site.css'), 'v_fonts': _v('assets/css/fonts.css'), 'v_js': _v('assets/js/site.js'),'S': S[lang], 'site': SITE, 'lang': lang, 'nav': nav_for(lang), 'alt_href': entry['path_' + other],
+    return {'v_css': _v('site.css'), 'v_fonts': _v('fonts.css'), 'v_js': _v('site.js'), 'base': BASE, 'theme': THEME,'S': S[lang], 'site': SITE, 'lang': lang, 'nav': nav_for(lang), 'alt_href': entry['path_' + other],
             'path': entry['path_' + lang], 'canonical': SITE['domain'] + entry['path_' + lang],
             'legal_path': path_for('dati-societari', lang), 'privacy_path': path_for('privacy-policy-2', lang),
             'cookie_path': path_for('cookie-policy', lang), 'projects_path': path_for('progetti-in-corso', lang), 'contact_path': path_for('contatti', lang), 'news_path': path_for('news', lang),
@@ -248,7 +264,15 @@ def page_title_from_blocks(c):
     return hs[0]['text'] if hs else c['wp_title']
 
 def build():
-    if (OUT / 'assets/img').exists():
+    # asset del tema
+    for sub in ('css', 'js', 'fonts'):
+        (OUT / 'assets' / sub).mkdir(parents=True, exist_ok=True)
+    shutil.copy(THEME_DIR / 'site.css', OUT / 'assets/css/site.css')
+    shutil.copy(THEME_DIR / 'fonts.css', OUT / 'assets/css/fonts.css')
+    shutil.copy(THEME_DIR / 'site.js', OUT / 'assets/js/site.js')
+    for f in (OUT / 'assets/fonts').glob('*.woff2'): f.unlink()
+    for f in (THEME_DIR / 'fonts').glob('*.woff2'): shutil.copy(f, OUT / 'assets/fonts' / f.name)
+    if (OUT / 'assets/img').exists() and OUT == SITE_ROOT:
         for f in (OUT / 'assets/img').iterdir():
             if f.name not in ('logo-aet-group.png', 'flag-gb.svg', 'flag-it.svg'): f.unlink()
     for e in SITE['pages']:
@@ -265,7 +289,9 @@ def build():
                             'areas': [{'icon': image(blocks[i]['src']), 'title': blocks[i+1]['text'], 'text': blocks[i+2]['html'], 'href': rewrite_href(blocks[i+3]['href']), 'btn': blocks[i+3]['text']} for i in range(1, 12, 4)],
                             'news_title': next((b['text'] for b in blocks if b['t'] == 'h' and b['level'] == 'h2' and 'NEWS' in b['text'].upper()), S[lang]['latest_news'])})
                 ctx['title'] = 'Gruppo AET – Apparati Elettromeccanici e Telecomunicazioni'
-                ctx['desc'] = S[lang]['about']; ctx['hero'] = ctx['hero_slides'][0]['bg']
+                ctx['desc'] = S[lang]['about']; ctx['hero'] = image(SITE['hero_image'], 2000)
+                ctx['projects'] = [dict(p, img=image(p['img'], 1200)) for p in SITE['home_projects'][lang]]
+                ctx['areas_full'] = ctx['areas']
                 write(e['path_' + lang], env.get_template('home.html').render(**ctx)); continue
             # hero: prima immagine + primo titolo
             hero = None
@@ -289,6 +315,8 @@ def build():
                 ctx['company_line'] = next((b['html'] for b in blocks if b['t'] == 'txt' and 'IVA' in b['html'].upper() and 'REA' in b['html'].upper()), None)
             tpl = {'page': 'page.html', 'post': 'post.html', 'news': 'news.html', 'contact': 'contact.html'}[kind]
             write(e['path_' + lang], env.get_template(tpl).render(**ctx))
+    if OUT != SITE_ROOT:
+        print(f'tema {THEME} generato in {OUT}'); return
     # 404
     for lang in ('it',):
         ctx = base_ctx(SITE['pages'][0], lang); ctx.update({'title': 'Pagina non trovata – Gruppo AET', 'desc': ''})

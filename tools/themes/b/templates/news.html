@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="page-hero"{% if hero %} style="--hero:url('{{ hero }}')"{% endif %}>
+  <div class="wrap"><h1>{{ title }}</h1></div>
+</section>
+<section class="wrap page-body">
+  <ul class="news-list">
+  {% for p in posts %}
+    <li class="news-item">
+      {% if p.thumb %}<a href="{{ p.path }}" class="news-item__img"><img src="{{ p.thumb }}" alt="" loading="lazy"></a>{% endif %}
+      <div>
+        <time datetime="{{ p.date }}">{{ p.datetxt or p.date }}</time>
+        <h2><a href="{{ p.path }}">{{ p.title }}</a></h2>
+        <p>{{ p.excerpt }}</p>
+        <a class="more" href="{{ p.path }}">{{ S.read_more }}</a>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+{% endblock %}

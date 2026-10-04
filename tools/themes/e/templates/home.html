@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="wrap" aria-label="Gruppo AET">
+  <div class="mosaic">
+    <div class="mosaic__hero" style="--hero:url('{{ hero }}')">
+      <div><p class="hero__kicker">{{ S.hero_kicker }}</p><h1>{{ S.hero_title }}</h1><p>{{ S.hero_text }}</p><a class="btn btn--light" href="{{ areas[0].href }}">{{ S.hero_cta }}</a></div>
+    </div>
+    <div class="mosaic__stat mosaic__stat--sky"><span class="mono">{{ S.stat_since }}</span><strong>1964</strong></div>
+    <div class="mosaic__stat"><span class="mono">{{ S.stat_areas }}</span><strong>3</strong></div>
+    <div class="mosaic__stat"><span class="mono">{{ S.stat_offices }}</span><strong>Lecce · Napoli</strong></div>
+  {% for a in areas %}
+    <div class="mosaic__area"><img src="{{ a.icon }}" alt="" width="36" height="36"><h2><a href="{{ a.href }}">{{ a.title }}</a></h2><div class="prose">{{ a.text|clean|safe }}</div><a class="more" href="{{ a.href }}">{{ S.read_more }}</a></div>
+  {% endfor %}
+  </div>
+</section>
+<section class="wrap projects">
+  <div class="section-head"><h2>{{ S.projects_title }}</h2><a class="more" href="{{ projects_path }}">{{ S.all_projects }}</a></div>
+  <ul class="projects__grid">
+  {% for p in projects %}
+    <li><a href="{{ projects_path }}"><img src="{{ p.img }}" alt="" loading="lazy"><span><strong>{{ p.title }}</strong><em>{{ p.sub }}</em></span></a></li>
+  {% endfor %}
+  </ul>
+</section>
+<section class="wrap latest">
+  <div class="section-head"><h2>{{ S.latest_news }}</h2><a class="more" href="{{ news_path }}">{{ S.all_news }}</a></div>
+  <ul class="news-cards">
+  {% for p in posts[:3] %}
+    <li>{% if p.thumb %}<a href="{{ p.path }}"><img src="{{ p.thumb }}" alt="" loading="lazy"></a>{% endif %}<time datetime="{{ p.date }}">{{ p.datetxt or p.date }}</time><h3><a href="{{ p.path }}">{{ p.title }}</a></h3><p>{{ p.excerpt|truncate(140, True) }}</p></li>
+  {% endfor %}
+  </ul>
+</section>
+{% endblock %}

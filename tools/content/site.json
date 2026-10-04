@@ -430,7 +430,10 @@
    "footer_about": "Chi siamo",
    "contact_us": "CONTATTACI",
    "prev": "Precedente",
-   "next": "Successivo"
+   "next": "Successivo",
+   "stat_since": "Attivi dal",
+   "stat_areas": "Settori di attività",
+   "stat_offices": "Sedi"
   },
   "en": {
    "lang": "en",
@@ -476,7 +479,10 @@
    "footer_about": "About us",
    "contact_us": "CONTACT US",
    "prev": "Previous",
-   "next": "Next"
+   "next": "Next",
+   "stat_since": "Operating since",
+   "stat_areas": "Business areas",
+   "stat_offices": "Offices"
   }
  },
  "offices": {

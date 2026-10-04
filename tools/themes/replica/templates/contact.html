@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="page-hero"{% if hero %} style="--hero:url('{{ hero }}')"{% endif %}>
+  <div class="wrap"><h1>{{ title }}</h1></div>
+</section>
+<section class="wrap page-body contact">
+  <h2>{{ title }}</h2>
+  <div class="prose"><p><strong>{{ site.company }}</strong><br>E-mail: <a href="mailto:{{ offices.email }}">{{ offices.email }}</a> – PEC: <a href="mailto:{{ offices.pec }}">{{ offices.pec }}</a></p></div>
+  <div class="contact-grid">
+    <div class="office">
+      <h3>{{ S.legal_office }}</h3>
+      <address>{{ offices.legal.lines|join(' – ')|safe }}<br>Tel: <a href="tel:{{ offices.legal.tel|replace(' ','') }}">{{ offices.legal.tel }}</a> &nbsp; Fax: {{ offices.legal.fax }}</address>
+      {% if maps and maps[0] %}<iframe class="map" src="{{ maps[0] }}" loading="lazy" title="{{ S.legal_office }}" referrerpolicy="no-referrer-when-downgrade"></iframe>{% endif %}
+    </div>
+    <div class="office">
+      <h3>{{ S.operating_office }}</h3>
+      <address>{{ offices.operating.lines|join(' – ')|safe }}<br>Tel: <a href="tel:{{ offices.operating.tel|replace(' ','') }}">{{ offices.operating.tel }}</a> &nbsp; Fax: {{ offices.operating.fax }}</address>
+      {% if maps and maps[1] %}<iframe class="map" src="{{ maps[1] }}" loading="lazy" title="{{ S.operating_office }}" referrerpolicy="no-referrer-when-downgrade"></iframe>{% endif %}
+    </div>
+  </div>
+  <div class="contact-form">
+    <h2>{{ S.contact_us }}</h2>
+    <form id="contact-form" action="/api/contact" method="post" novalidate data-ok="{{ S.form_ok }}" data-err="{{ S.form_err }}">
+      <input type="hidden" name="lang" value="{{ lang }}">
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field"><label for="f-name">{{ S.form_name }}</label><input id="f-name" name="name" type="text" placeholder="{{ S.form_name }}" required autocomplete="name"></div>
+      <div class="field"><label for="f-email">{{ S.form_email }}</label><input id="f-email" name="email" type="email" placeholder="{{ S.form_email }}" required autocomplete="email"></div>
+      <div class="field"><label for="f-subject">{{ S.form_subject }}</label><input id="f-subject" name="subject" type="text" placeholder="{{ S.form_subject }}" required></div>
+      <div class="field"><label for="f-message">{{ S.form_message }}</label><textarea id="f-message" name="message" rows="6" placeholder="{{ S.form_message }}" required></textarea></div>
+      <div class="field field--check"><input id="f-privacy" name="privacy" type="checkbox" required><label for="f-privacy">{{ S.form_privacy }} <a href="{{ privacy_path }}">Privacy</a></label></div>
+      <button class="btn" type="submit">{{ S.form_send }}</button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+  {% if company_line %}<p class="company-line">{{ company_line|clean|striptags }}</p>{% endif %}
+</section>
+{% endblock %}
