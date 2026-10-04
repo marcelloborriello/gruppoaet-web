@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% import "_sections.html" as sec %}
+{% block main %}
+<section class="page-hero"{% if hero %} style="--hero:url('{{ hero }}')"{% endif %}>
+  <div class="wrap"><h1>{{ title }}</h1></div>
+</section>
+<article class="wrap page-body">
+{{ sec.render(sections, S) }}
+</article>
+{% endblock %}

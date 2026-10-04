@@ -1,0 +1,124 @@
+{
+  "domain": "https://gruppoaet.it",
+  "company": "AET – Apparati Elettromeccanici e Telecomunicazioni S.r.l.",
+  "linkedin": "https://www.linkedin.com/company/gruppo-aet/",
+  "whistleblowing_portal": "https://wb.genya.it/05051750635",
+  "pages": [
+    {"it": "homepage",                "en": "homepage-en",                  "path_it": "/",                            "path_en": "/en/",                         "kind": "home"},
+    {"it": "storia",                  "en": "storia-copy",                  "path_it": "/storia/",                     "path_en": "/en/history/",                 "kind": "page"},
+    {"it": "mission",                 "en": "mission-copy",                 "path_it": "/mission/",                    "path_en": "/en/mission/",                 "kind": "page"},
+    {"it": "codice-etico",            "en": "codice-etico-2",               "path_it": "/codice-etico/",               "path_en": "/en/code-of-ethics/",          "kind": "page"},
+    {"it": "il-gruppo",               "en": "il-gruppo-copy",               "path_it": "/il-gruppo/",                  "path_en": "/en/the-group/",               "kind": "page"},
+    {"it": "partner-e-fornitori",     "en": "partner-e-fornitori-copy",     "path_it": "/partner-e-fornitori/",        "path_en": "/en/partners-and-suppliers/",  "kind": "page"},
+    {"it": "associazioni",            "en": "associazioni-2",               "path_it": "/associazioni/",               "path_en": "/en/associations/",            "kind": "page"},
+    {"it": "armamento",               "en": "armamento-2",                  "path_it": "/armamento/",                  "path_en": "/en/track-systems/",           "kind": "page"},
+    {"it": "impianti-tecnologici",    "en": "impianti-tecnologici-copy",    "path_it": "/impianti-tecnologici/",       "path_en": "/en/technological-systems/",   "kind": "page"},
+    {"it": "opere-civili",            "en": "opere-civili-copy",            "path_it": "/opere-civili/",               "path_en": "/en/civil-works/",             "kind": "page"},
+    {"it": "progetti-in-corso",       "en": "progetti-in-corso-copy",       "path_it": "/progetti-in-corso/",          "path_en": "/en/ongoing-projects/",        "kind": "page"},
+    {"it": "progetti-completati",     "en": "progetti-completati-copy",     "path_it": "/progetti-completati/",        "path_en": "/en/completed-projects/",      "kind": "page"},
+    {"it": "i-nostri-clienti",        "en": "i-nostri-clienti-copy",        "path_it": "/i-nostri-clienti/",           "path_en": "/en/our-clients/",             "kind": "page"},
+    {"it": "certificazioni",          "en": "certificazioni-copy",          "path_it": "/certificazioni/",             "path_en": "/en/certifications/",          "kind": "page"},
+    {"it": "regolamento-whistleblowing","en": "regolamento-whistleblowing-en","path_it": "/regolamento-whistleblowing/", "path_en": "/en/whistleblowing-policy/",   "kind": "page"},
+    {"it": "informativa-whistleblowing","en": "informativa-whistleblowing-en","path_it": "/informativa-whistleblowing/", "path_en": "/en/whistleblowing-notice/",   "kind": "page"},
+    {"it": "contatti",                "en": "contatti-copy",                "path_it": "/contatti/",                   "path_en": "/en/contacts/",                "kind": "contact"},
+    {"it": "news",                    "en": "news-copy",                    "path_it": "/news/",                       "path_en": "/en/news/",                    "kind": "news"},
+    {"it": "dati-societari",          "en": "dati-societari-copy",          "path_it": "/dati-societari/",             "path_en": "/en/company-data/",            "kind": "page"},
+    {"it": "privacy-policy-2",        "en": "privacy-policy-copy",          "path_it": "/privacy-policy/",             "path_en": "/en/privacy-policy/",          "kind": "page"},
+    {"it": "cookie-policy",           "en": "cookie-policy-copy",           "path_it": "/cookie-policy/",              "path_en": "/en/cookie-policy/",           "kind": "page"},
+    {"it": "aet-rinnova-elite-2025",  "en": "aet-in-elite-program-2025",    "path_it": "/news/aet-rinnova-elite-2025/","path_en": "/en/news/aet-in-elite-program-2025/", "kind": "post"},
+    {"it": "premio-industria-felix-2024","en": "industria-felix-award-2024","path_it": "/news/premio-industria-felix-2024/","path_en": "/en/news/industria-felix-award-2024/", "kind": "post"},
+    {"it": "aet-al-programma-elite",  "en": "aet-al-programma-elite-en",    "path_it": "/news/aet-al-programma-elite/","path_en": "/en/news/aet-in-the-elite-program/", "kind": "post"},
+    {"it": "premio-industria-felix-2","en": "industria-felix-awars",        "path_it": "/news/premio-industria-felix-2019/","path_en": "/en/news/industria-felix-award-2019/", "kind": "post"},
+    {"it": "aet-nel-segnalamento-ferroviario","en": "aet-enters-the-railway-signaling-sector","path_it": "/news/aet-nel-segnalamento-ferroviario/","path_en": "/en/news/aet-enters-the-railway-signaling-sector/", "kind": "post"}
+  ],
+  "nav": {
+    "it": [
+      {"label": "Home", "to": "homepage"},
+      {"label": "L'azienda", "children": [["Storia","storia"],["Mission","mission"],["Codice etico","codice-etico"],["Il gruppo","il-gruppo"],["Partner e fornitori","partner-e-fornitori"],["Associazioni","associazioni"]]},
+      {"label": "Settori di attività", "children": [["Armamento","armamento"],["Impianti tecnologici","impianti-tecnologici"],["Opere civili","opere-civili"]]},
+      {"label": "Progetti", "children": [["Progetti in corso","progetti-in-corso"],["Progetti completati","progetti-completati"],["I nostri clienti","i-nostri-clienti"]]},
+      {"label": "Certificazioni", "to": "certificazioni"},
+      {"label": "Whistleblowing", "children": [["Regolamento","regolamento-whistleblowing"],["Informativa","informativa-whistleblowing"],["Accedi al portale","@wb"]]},
+      {"label": "Contatti", "to": "contatti"},
+      {"label": "News", "to": "news"}
+    ],
+    "en": [
+      {"label": "Home", "to": "homepage"},
+      {"label": "Company", "children": [["History","storia"],["Mission","mission"],["Code of ethics","codice-etico"],["The group","il-gruppo"],["Partners and suppliers","partner-e-fornitori"],["Associations","associazioni"]]},
+      {"label": "Business areas", "children": [["Track systems","armamento"],["Technological systems","impianti-tecnologici"],["Civil works","opere-civili"]]},
+      {"label": "Projects", "children": [["Ongoing projects","progetti-in-corso"],["Completed projects","progetti-completati"],["Our clients","i-nostri-clienti"]]},
+      {"label": "Certifications", "to": "certificazioni"},
+      {"label": "Whistleblowing", "children": [["Policy","regolamento-whistleblowing"],["Notice","informativa-whistleblowing"],["Go to the portal","@wb"]]},
+      {"label": "Contacts", "to": "contatti"},
+      {"label": "News", "to": "news"}
+    ]
+  },
+  "strings": {
+    "it": {
+      "lang": "it", "other_lang": "en", "switch": "English",
+      "about": "AET – Apparati Elettromeccanici e Telecomunicazioni S.r.l. opera nel settore delle infrastrutture ferroviarie ed è specializzata in armamento ferroviario, impianti tecnologici e opere civili.",
+      "footer_links": "Link utili", "footer_contacts": "Contatti", "footer_offices": "Sedi",
+      "legal_office": "Sede legale", "operating_office": "Sede operativa e commerciale",
+      "rights": "Tutti i diritti riservati", "company_data": "Dati societari", "privacy": "Privacy policy", "cookies": "Cookie policy",
+      "read_more": "Leggi di più", "latest_news": "Ultime news", "all_news": "Tutte le news", "news": "News",
+      "areas_title": "Settori di attività", "projects_title": "Progetti in corso", "all_projects": "Tutti i progetti",
+      "download_pdf": "Scarica il PDF", "open_map": "Apri in Google Maps", "write_us": "Scrivici",
+      "form_name": "Nome e cognome", "form_email": "Email", "form_subject": "Oggetto", "form_message": "Messaggio", "form_send": "Invia il messaggio",
+      "form_privacy": "Ho letto l'informativa sulla privacy e acconsento al trattamento dei dati.",
+      "form_ok": "Messaggio inviato. Ti risponderemo al più presto.", "form_err": "Invio non riuscito. Riprova tra qualche minuto o scrivi a info@gruppoaet.it.",
+      "hero_kicker": "Dal 1964 nelle infrastrutture ferroviarie",
+      "hero_title": "Armamento, impianti tecnologici e opere civili per il mondo ferroviario",
+      "hero_text": "Gestiamo l'intero ciclo di commessa: progettazione, approvvigionamenti, installazione e collaudo.",
+      "hero_cta": "Scopri come operiamo",
+      "since": "Dal 1964", "menu": "Menu", "close": "Chiudi", "back_to_news": "Torna alle news", "skip": "Vai al contenuto"
+    },
+    "en": {
+      "lang": "en", "other_lang": "it", "switch": "Italiano",
+      "about": "AET – Apparati Elettromeccanici e Telecomunicazioni S.r.l. operates in the railway infrastructure sector and specialises in track systems, technological systems and civil works.",
+      "footer_links": "Useful links", "footer_contacts": "Contacts", "footer_offices": "Offices",
+      "legal_office": "Registered office", "operating_office": "Operating and sales office",
+      "rights": "All rights reserved", "company_data": "Company data", "privacy": "Privacy policy", "cookies": "Cookie policy",
+      "read_more": "Read more", "latest_news": "Latest news", "all_news": "All news", "news": "News",
+      "areas_title": "Business areas", "projects_title": "Ongoing projects", "all_projects": "All projects",
+      "download_pdf": "Download the PDF", "open_map": "Open in Google Maps", "write_us": "Write to us",
+      "form_name": "Full name", "form_email": "Email", "form_subject": "Subject", "form_message": "Message", "form_send": "Send message",
+      "form_privacy": "I have read the privacy notice and consent to the processing of my data.",
+      "form_ok": "Message sent. We will get back to you shortly.", "form_err": "Sending failed. Please try again in a few minutes or write to info@gruppoaet.it.",
+      "hero_kicker": "Railway infrastructure since 1964",
+      "hero_title": "Track systems, technological systems and civil works for the railway sector",
+      "hero_text": "We manage the whole project life cycle: design, procurement, installation and testing.",
+      "hero_cta": "See how we work",
+      "since": "Since 1964", "menu": "Menu", "close": "Close", "back_to_news": "Back to news", "skip": "Skip to content"
+    }
+  },
+  "offices": {
+    "legal": {"lines": ["Via Marcello Chiatante, 72/74", "73100 Lecce"], "tel": "+39 0832 361323", "fax": "+39 0832 363468", "map": "https://www.google.com/maps/search/?api=1&query=Via+Marcello+Chiatante+72+Lecce"},
+    "operating": {"lines": ["Via Francesco Crispi, 62", "80121 Napoli"], "tel": "+39 081 2488388", "fax": "+39 081 2486573", "map": "https://www.google.com/maps/search/?api=1&query=Via+Francesco+Crispi+62+Napoli"},
+    "email": "commerciale@gruppoaet.it", "pec": "aetsrlconsociounico@pec.it"
+  },
+  "home_projects": {
+    "it": [
+      {"title": "Ferrovia Alifana Inferiore", "sub": "Tratta Piscinola – Aversa", "img": "wp-content/uploads/2024/07/Impianti-di-telecomunicazione-e-segnalamento.jpg"},
+      {"title": "Ferrovia Alifana Inferiore", "sub": "Tratta Piscinola – Capodichino Aeroporto", "img": "wp-content/uploads/2024/07/alifana2.jpg"},
+      {"title": "Metropolitana di Napoli", "sub": "Linea 6", "img": "wp-content/uploads/2024/07/progetti-in-cosrso-Linea-6-ScambiTE_Orizzontale.jpg"},
+      {"title": "Ferrovia Circumvesuviana", "sub": "Raddoppio tratta Torre Annunziata – Castellammare di Stabia", "img": "wp-content/uploads/2024/07/circumvesuviana-1.jpg"},
+      {"title": "Linee Flegree", "sub": "Rinnovo del segnalamento con sistema ACC-M", "img": "wp-content/uploads/2019/10/98677161_s-3.jpg"}
+    ],
+    "en": [
+      {"title": "Alifana Inferiore railway", "sub": "Piscinola – Aversa section", "img": "wp-content/uploads/2024/07/Impianti-di-telecomunicazione-e-segnalamento.jpg"},
+      {"title": "Alifana Inferiore railway", "sub": "Piscinola – Capodichino Airport section", "img": "wp-content/uploads/2024/07/alifana2.jpg"},
+      {"title": "Naples Metro", "sub": "Line 6", "img": "wp-content/uploads/2024/07/progetti-in-cosrso-Linea-6-ScambiTE_Orizzontale.jpg"},
+      {"title": "Circumvesuviana railway", "sub": "Track doubling, Torre Annunziata – Castellammare di Stabia", "img": "wp-content/uploads/2024/07/circumvesuviana-1.jpg"},
+      {"title": "Flegree lines", "sub": "Signalling renewal with ACC-M system", "img": "wp-content/uploads/2019/10/98677161_s-3.jpg"}
+    ]
+  },
+  "hero_image": "wp-content/uploads/2024/07/4-new-scaled.jpg",
+  "footer_logos": [
+    ["wp-content/uploads/elementor/thumbs/logo-footer-231-qqv0fz15ybpychy7gtaoof0tclzwuwqq2gxyaen20w.webp", "Modello 231"],
+    ["wp-content/uploads/elementor/thumbs/logo-bentley-soa-footer-qqv0g9de1i44x1eei8p7d77dwji5rvhbwke6o3jh1c.webp", "Attestazione SOA Bentley"],
+    ["wp-content/uploads/elementor/thumbs/logo-footer-confindustria-500x303-1-qqv0g6jvh00e1izctx7td53075kwdykdevjamuyn7k.webp", "Confindustria"],
+    ["wp-content/uploads/elementor/thumbs/logo-certiquality-footer-qqv0fv9t6zlag5ub9fjrnhfhau70l4iaxf063bcc8w.webp", "Certiquality"],
+    ["wp-content/uploads/2022/10/logo-elite-150x150.png", "ELITE – Borsa Italiana"],
+    ["wp-content/uploads/2022/10/GDPR.webp", "GDPR"]
+  ]
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <style box-sizing:="" background-color:="" color:="" text-decoration:="" type="text/css">www.gruppoaet.it</style>
+    </head>
+    <body style="word-wrap: break-word; -webkit-nbsp-mode: space; line-break: after-white-space;">
+        <table cellpadding="0" cellspacing="0" class="ng-scope" style="box-sizing: border-box; border-spacing: 0px; border-collapse: collapse; color: rgb(68, 68, 68); orphans: 2; widows: 2; width: 425px; font-size: 11pt; font-family: Arial, sans-serif;">
+            <tbody style="box-sizing: border-box;">
+                <tr style="box-sizing: border-box;">
+                    <td ng-if="showField('logo')" width="125" valign="top" rowspan="6" class="ng-scope" style="box-sizing: border-box; padding: 0px 5px 0px 0px; font-size: 10pt; border-right-width: 1px; border-right-style: solid; border-right-color: rgb(0, 0, 0); width: 110px; vertical-align: top;">
+                        <a ng-if="showField('logoURL')" href="http://www.gruppoaet.it/firma-mail/logo_aet_group_180_230_blank.png" target="_blank" class="ng-scope" style="box-sizing: border-box; background-color: transparent; color: rgb(51, 122, 183); text-decoration: none;">
+                            <img border="0" alt="Logo" width="105" ng-src="http://www.gruppoaet.it/firma-mail/logo_aet_group_180_230_blank.png" src="http://www.gruppoaet.it/firma-mail/logo_aet_group_180_230_blank.png" style="box-sizing: border-box; border: 0px; vertical-align: middle; width: 105px; height: auto;" />
+                        </a>
+                    </td>
+                    <td style="box-sizing: border-box; padding: 0px 0px 0px 10px;">
+                        <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; border-spacing: 0px; border-collapse: collapse; background-color: transparent;">
+                            <tbody style="box-sizing: border-box;">
+                                <tr style="box-sizing: border-box;">
+                                    <td valign="top" style="box-sizing: border-box; padding: 0px 0px 5px 10px; font-size: 10pt; color: rgb(0, 121, 172); width: 400px; vertical-align: top;">
+                                        <span style="box-sizing: border-box; font-weight: 700;">
+                                            <span class="ng-binding" style="box-sizing: border-box; font-size: 11pt; color: rgb(0, 0, 0);">Nome e Cognome</span>
+                                        </span>
+                                    </td>                    
+                                </tr>
+                                <tr style="box-sizing: border-box;">
+                                    <td valign="top" style="box-sizing: border-box; padding: 5px 0px 5px 10px; color: rgb(68, 68, 68); vertical-align: top; line-height: 17px;">
+                                        <font face="Arial">
+                                            <span style="font-style: normal; font-size: 12px;">
+                                                <span ng-if="isAnyFieldEntered('company,address1,address2')" class="ng-scope" style="box-sizing: border-box;">
+                                                    <span style="box-sizing: border-box; color: rgb(0, 0, 0);">
+                                                        <span style="box-sizing: border-box;">a:</span>
+                                                    </span>
+                                                </span>
+                                                 <span ng-if="isAnyFieldEntered('address1,address2')" class="ng-scope" style="box-sizing: border-box;">
+                                                    <span ng-if="showField('address1')" class="ng-binding ng-scope" style="box-sizing: border-box; color: rgb(56, 180, 166);">Via Francesco Crispi, 62</span>
+                                                    <span ng-if="showField('address2')" class="ng-binding ng-scope" style="box-sizing: border-box; color: rgb(0, 0, 0);">|
+                                                    <span ng-if="isAnyFieldEntered('company,address1')" class="ng-scope" style="box-sizing: border-box; color: rgb(56, 180, 180);"> <span>80121 Napoli (NA)</span>
+                                                </span>
+                                            </span>
+                                        </font>
+                                         <span ng-if="isAnyFieldEntered('email,website')" class="ng-scope" style="font-size: 10pt; box-sizing: border-box;">
+                                            <br style="box-sizing: border-box;" />
+                                        </span>
+                                         <font face="Arial">
+                                            <span style="font-style: normal; font-size: 12px;">
+                                                <span ng-if="showField('email')" class="ng-scope" style="box-sizing: border-box;">
+                                                    <span style="box-sizing: border-box; color: rgb(0, 0, 0);">
+                                                        <span style="box-sizing: border-box;">e:</span>
+                                                    </span>
+                                                     <span class="ng-binding" style="font-weight: bold; box-sizing: border-box; color: rgb(56, 180, 166);"></span>
+                                                     <span class="ng-binding" style="box-sizing: border-box; color: rgb(56, 180, 166);">email@gruppoaet.it</span>
+                                                </span>
+                                                   <span ng-if="showField('website')" class="ng-scope" style="box-sizing: border-box;">
+                                                    <span ng-if="showField('email')" class="ng-scope" style="box-sizing: border-box;">|</span>
+                                                     <span style="box-sizing: border-box; color: rgb(56, 180, 166);">
+                                                        <span style="box-sizing: border-box;">w:(+39) 0812488388</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </font>
+                                         <span ng-if="isAnyFieldEntered('mobile,phone')" class="ng-scope" style="font-size: 10pt; box-sizing: border-box;">
+                                            <br style="box-sizing: border-box;" />
+                                        </span>
+                                         <span ng-if="showField('mobile')" class="ng-scope" style="box-sizing: border-box;">
+                                            <font face="Arial">
+                                                <span style="font-style: normal; font-size: 12px;">
+                                                    <span style="box-sizing: border-box; color: rgb(0, 0, 0);">
+                                                        <span style="box-sizing: border-box;">m:</span>
+                                                    </span>
+                                                     <span class="ng-binding" style="font-weight: bold; box-sizing: border-box; color: rgb(56, 180, 166);"></span>
+                                                    <span class="ng-binding" style="box-sizing: border-box; color: rgb(56, 180, 166);">(+39) num. cellulare</span>
+                                                </span>
+                                            </font>
+                                        </span>
+                                        
+</td>
+                                    
+</tr>
+                                <tr ng-if="isAnyFieldEntered('facebookURL,twitterURL,youtubeURL,linkedinURL,instagramURL')" class="ng-scope" style="box-sizing: border-box;">
+                                    <td valign="bottom" style="box-sizing:border-box; padding:5px 0px 0px 10px; font-size:10pt; vertical-align:bottom;">
+                                              </span>
+                                         <span ng-if="showField('linkedinURL')" class="ng-scope" style="box-sizing: border-box;">
+                                            <a href="https://it.linkedin.com/company/gruppo-aet" target="_blank" rel="noopener" style="box-sizing: border-box; background-color: transparent; color: rgb(51, 122, 183); text-decoration: none;">
+                                                <img border="0" width="19" ng-src="https://mbone.it/images/ln.png" alt="linkedin" src="https://mbone.it/images/ln.png" style="box-sizing: border-box; border: 0px; vertical-align: middle; height: 19px; width: 19px;"/>
+                                            </a>
+                                              </span>
+                                        
+</td>
+                                    
+</tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    
+</tr>
+            </tbody>
+        </table>
+    </body>
+</html>

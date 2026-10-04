@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gruppoaet.it/sitemap.xml
