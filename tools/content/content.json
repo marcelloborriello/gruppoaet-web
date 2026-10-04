@@ -2054,6 +2054,16 @@
    },
    {
     "t": "iconbox",
+    "title": "Download the PDF",
+    "desc": "Integrated Policy (Quality, Environment, Health &amp; Safety) – ISO 9001, ISO 14001, ISO 45001",
+    "href": "wp-content/uploads/2026/09/Politica-Integrata-AET.pdf",
+    "icon": [
+     "far",
+     "fa-file-pdf"
+    ]
+   },
+   {
+    "t": "iconbox",
     "title": "Download the PDF here",
     "desc": "UNI EN ISO 14001:2015",
     "href": "wp-content/uploads/2024/07/UNI-EN-ISO-14001-AET.pdf",
@@ -3911,6 +3921,16 @@
    {
     "t": "txt",
     "html": "<p>La AET pone particolare attenzione allo svolgimento dei processi relativi alle attività svolte, con particolare riguardo all’impatto ambientale ed alla gestione della sicurezza nei luoghi di lavoro. A tal proposito si rivolge ad enti terzi Certificati da ACCREDIA per la valutazione e la conformità dei Sistemi di gestione adottati.</p>"
+   },
+   {
+    "t": "iconbox",
+    "title": "Scarica qui il PDF",
+    "desc": "Politica Integrata – UNI EN ISO 9001:2015, UNI EN ISO 14001:2015, UNI ISO 45001:2018",
+    "href": "wp-content/uploads/2026/09/Politica-Integrata-AET.pdf",
+    "icon": [
+     "far",
+     "fa-file-pdf"
+    ]
    },
    {
     "t": "iconbox",
