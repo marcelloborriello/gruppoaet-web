@@ -36,11 +36,12 @@ main{padding:30px 0 60px}
 .btn--ghost{background:#fff;color:var(--secondary);border:1px solid #ccc}
 .btn--ghost:hover{background:var(--light);color:var(--secondary)}
 .status{font-size:13px;color:#1b7f4b;min-height:1.4em;margin-top:8px}
-.preview{background:#fff;border:1px solid var(--line);border-radius:6px;padding:26px;overflow:auto}
+.preview{background:#fff;border:1px solid var(--line);border-radius:6px;padding:20px;overflow:auto}
 .preview-wrap{position:sticky;top:20px}
 .preview h2{font-size:12px;letter-spacing:.3px;color:var(--text);margin:0 0 16px;font-weight:500;text-transform:uppercase}
-#anteprima{line-height:1.25;font-family:Arial,sans-serif}
-#anteprima p{line-height:1.25}
+#anteprima{line-height:normal;font-family:Arial,sans-serif;font-size:9pt}
+#anteprima p{line-height:normal}
+#anteprima table{line-height:normal}
 .guides{margin-top:34px}
 .guides h2{font-size:20px;color:var(--secondary);margin:0 0 6px}
 .guides p.lead{color:var(--text);margin:0 0 16px}
@@ -142,7 +143,7 @@ footer{text-align:center;color:var(--text);font-size:12px;padding:20px}
   function build(){
     var tit=$('titolo').value, nome=$('nome').value.trim()||'Nome Cognome', ruolo=$('ruolo').value.trim(), sede=SEDI[$('sede').value];
     var tel=$('usaTel').checked?sede.tel:'', mob=fmtTel($('mob').value), email=$('email').value.trim();
-    var S10='font-size: 10pt; font-family: Arial, sans-serif; color: rgb(64, 64, 64);', S8='font-size: 8pt; font-family: Arial, sans-serif; color: gray;', S8d='font-size: 8pt; font-family: Arial, sans-serif; color: rgb(64, 64, 64);';
+    var S10='font-size: 11pt; font-family: Arial, sans-serif; color: rgb(64, 64, 64);', S8='font-size: 9pt; font-family: Arial, sans-serif; color: gray;', S8d='font-size: 9pt; font-family: Arial, sans-serif; color: rgb(64, 64, 64);';
     var h='<table style="border-collapse: collapse;"><tbody><tr>'+
       '<td valign="middle" style="padding-right: 10px; border-style: none solid none none; border-right-width: 0.5pt; border-right-color: gray;"><a href="https://gruppoaet.it"><img src="https://gruppoaet.it/firma-mail/logo_aet_group_60_76_blank.png" width="60" height="76" alt="Gruppo AET" style="display:block;border:0"/></a></td>'+
       '<td style="padding-left: 10px;">'+
@@ -158,7 +159,7 @@ footer{text-align:center;color:var(--text);font-size:12px;padding:20px}
     if($('usaDisc').checked){
       h+='<table style="margin: 10px 0px 0px 0px; border-collapse: collapse;"><tbody><tr>'+
         '<td valign="top"><a href="https://it.linkedin.com/company/gruppo-aet"><img src="https://gruppoaet.it/firma-mail/linkedin_20_21.png" width="20" height="21" alt="LinkedIn" style="display:block;border:0"/></a></td>'+
-        '<td><p style="margin: 0px 0px 0px 5px;"><span style="font-size: 8pt; font-family: Arial, sans-serif; color: rgb(155, 155, 155);">'+DISC+'</span></p></td></tr></tbody></table>';
+        '<td><p style="margin: 0px 0px 0px 5px;"><span style="font-size: 9pt; font-family: Arial, sans-serif; color: rgb(155, 155, 155);">'+DISC+'</span></p></td></tr></tbody></table>';
     }
     return h;
   }
