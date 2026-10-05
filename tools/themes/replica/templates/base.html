@@ -65,12 +65,16 @@
     </div>
     <div class="footer-contact">
       <h2>{{ S.footer_contacts }}</h2>
+      <address>
+        <strong>{{ S.legal_office }}</strong><br>{{ site.offices.legal.lines|join(', ')|safe }}<br>
+        <strong>{{ S.operating_office }}</strong><br>{{ site.offices.operating.lines|join(', ')|safe }}<br>
+        <a href="mailto:{{ site.offices.email }}">{{ site.offices.email }}</a>
+      </address>
       <a class="btn btn--upper" href="{{ contact_path }}">{{ S.contact_us }}</a>
-      <img src="{{ footer_logos[5][0] }}" alt="GDPR" loading="lazy">
     </div>
-    <div class="footer-logos">
-      {% for src, alt in footer_logos[:5] %}<img src="{{ src }}" alt="{{ alt }}" loading="lazy">{% endfor %}
-    </div>
+  </div>
+  <div class="wrap footer-logos">
+    {% for src, alt in footer_logos %}<img src="{{ src }}" alt="{{ alt }}" loading="lazy">{% endfor %}
   </div>
   <div class="footer-legal">
     <p>© Copyright AET srl &nbsp;|&nbsp; {{ S.rights }} &nbsp;|&nbsp; <a href="{{ legal_path }}">{{ S.company_data }}</a> &nbsp;|&nbsp; <a href="{{ privacy_path }}">{{ S.privacy }}</a> &nbsp;|&nbsp; <a href="{{ cookie_path }}">{{ S.cookies }}</a></p>
