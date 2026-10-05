@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Firma email – Gruppo AET</title>
+<link rel="icon" href="/assets/img/logo-aet-group.png" type="image/png">
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<style>
+:root{--primary:#6EC1E4;--accent:#00ABE3;--secondary:#54595F;--text:#7A7A7A;--light:#F0F0F0;--dark:#2A2A2A;--line:#dfe3e6}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Roboto',system-ui,Arial,sans-serif;font-size:15px;line-height:1.6;color:#333;background:#f6f7f8}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--dark);color:#fff;padding:18px 0}
+header .wrap{display:flex;align-items:center;gap:16px}
+header img{width:44px;height:auto}
+header h1{font-size:20px;font-weight:500;margin:0}
+header small{display:block;font-size:13px;color:#bbb;font-weight:400}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+main{padding:30px 0 60px}
+.grid{display:grid;grid-template-columns:400px 1fr;gap:30px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px 24px}
+.card h2{font-size:17px;font-weight:700;color:var(--secondary);margin:0 0 14px;text-transform:uppercase}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12px;font-weight:500;color:var(--secondary);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field select{width:100%;font:inherit;font-size:14px;padding:9px 11px;border:1px solid #ccc;border-radius:3px;background:#fff;color:#222}
+.field input:focus,.field select:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,171,227,.18)}
+.row{display:grid;grid-template-columns:120px 1fr;gap:10px}
+.check{display:flex;gap:8px;align-items:center;font-size:14px;margin:8px 0}
+.hint{font-size:12px;color:var(--text);margin:-6px 0 10px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{display:inline-block;background:var(--primary);color:#fff;font:inherit;font-size:13px;font-weight:600;text-transform:uppercase;padding:10px 16px;border-radius:3px;border:0;cursor:pointer}
+.btn:hover{background:var(--accent)}
+.btn--ghost{background:#fff;color:var(--secondary);border:1px solid #ccc}
+.btn--ghost:hover{background:var(--light);color:var(--secondary)}
+.status{font-size:13px;color:#1b7f4b;min-height:1.4em;margin-top:8px}
+.preview{background:#fff;border:1px solid var(--line);border-radius:6px;padding:26px;overflow:auto}
+.preview-wrap{position:sticky;top:20px}
+.preview h2{font-size:12px;letter-spacing:.3px;color:var(--text);margin:0 0 16px;font-weight:500;text-transform:uppercase}
+.guides{margin-top:34px}
+.guides h2{font-size:20px;color:var(--secondary);margin:0 0 6px}
+.guides p.lead{color:var(--text);margin:0 0 16px}
+details{background:#fff;border:1px solid var(--line);border-radius:6px;margin-bottom:8px}
+summary{cursor:pointer;padding:12px 16px;font-weight:500;color:var(--secondary);list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:18px;color:var(--text)}
+details[open] summary::after{content:"–"}
+details ol{margin:0;padding:0 20px 16px 36px;color:#444}
+details li{margin-bottom:6px}
+details p.note{margin:0 20px 16px;padding:10px 12px;background:#f3f8fb;border-left:3px solid var(--primary);font-size:13px;color:#444}
+code{background:#f0f0f0;padding:1px 5px;border-radius:3px;font-size:13px}
+footer{text-align:center;color:var(--text);font-size:12px;padding:20px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><img src="/firma-mail/logo_aet_group_60_76_blank.png" alt=""><h1>Firma email Gruppo AET<small>Compila i campi, controlla l'anteprima, copia la firma nel tuo programma di posta.</small></h1></div></header>
+<main class="wrap">
+<div class="grid">
+  <section class="card">
+    <h2>I tuoi dati</h2>
+    <form id="f" autocomplete="on">
+      <div class="row">
+        <div class="field"><label for="titolo">Titolo</label><select id="titolo"><option value="">nessuno</option><option>ing.</option><option>dott.</option><option>dott.ssa</option><option>arch.</option><option>geom.</option><option>avv.</option><option>rag.</option></select></div>
+        <div class="field"><label for="nome">Nome e cognome</label><input id="nome" type="text" placeholder="Marcello Borriello" required></div>
+      </div>
+      <div class="field"><label for="ruolo">Funzione</label><input id="ruolo" type="text" placeholder="IT Manager"></div>
+      <div class="field"><label for="sede">Sede</label><select id="sede"><option value="na">Napoli – Via Francesco Crispi, 62</option><option value="le">Lecce – Via M. Chiatante, 72/74</option></select></div>
+      <label class="check"><input id="usaTel" type="checkbox" checked> Mostra il telefono della sede</label>
+      <div class="field"><label for="mob">Cellulare (facoltativo)</label><input id="mob" type="tel" placeholder="392 2004883"><p class="hint">Solo le cifre; il prefisso (+39) lo aggiungo io.</p></div>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="mborriello@gruppoaet.it"></div>
+      <label class="check"><input id="usaDisc" type="checkbox" checked> Includi la nota di riservatezza</label>
+    </form>
+    <div class="actions">
+      <button class="btn" type="button" id="copia">Copia la firma</button>
+      <button class="btn btn--ghost" type="button" id="scarica">Scarica file .html</button>
+      <button class="btn btn--ghost" type="button" id="copiaHtml">Copia codice HTML</button>
+    </div>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+  </section>
+  <div class="preview-wrap">
+    <section class="preview"><h2>Anteprima</h2><div id="anteprima"></div></section>
+  </div>
+</div>
+
+<section class="guides">
+  <h2>Come inserirla nel tuo programma di posta</h2>
+  <p class="lead">In tutti i casi la cosa più semplice è il pulsante <strong>Copia la firma</strong> e poi incollare. Le immagini (logo e icona LinkedIn) sono caricate da gruppoaet.it, quindi non vanno allegate.</p>
+
+  <details open><summary>Gmail (browser)</summary><ol>
+    <li>Clicca <strong>Copia la firma</strong> qui sopra.</li>
+    <li>In Gmail apri l'ingranaggio in alto a destra → <strong>Visualizza tutte le impostazioni</strong> → scheda <strong>Generali</strong> → sezione <strong>Firma</strong>.</li>
+    <li>Clicca <strong>Crea nuova</strong>, dai un nome (es. "AET") e incolla nel riquadro con <code>Ctrl+V</code> (<code>Cmd+V</code> su Mac).</li>
+    <li>Sotto, in "Valori predefiniti firma", scegli la firma AET sia per le nuove email sia per le risposte.</li>
+    <li>Scorri in fondo e premi <strong>Salva modifiche</strong>.</li></ol>
+    <p class="note">Se Gmail ti avvisa che le immagini esterne non sono visualizzate, è normale: i destinatari le vedranno. Su Gmail per Android/iPhone la firma HTML non è modificabile dall'app: impostala dal browser, poi nell'app vale solo quella di testo (puoi lasciare vuota quella mobile).</p></details>
+
+  <details><summary>Outlook nuovo e Outlook sul web (Microsoft 365)</summary><ol>
+    <li>Clicca <strong>Copia la firma</strong>.</li>
+    <li>In Outlook: <strong>Impostazioni</strong> (ingranaggio) → <strong>Account</strong> → <strong>Firme</strong>.</li>
+    <li><strong>Nuova firma</strong>, nome "AET", incolla nel riquadro con <code>Ctrl+V</code>.</li>
+    <li>In "Seleziona firme predefinite" scegli AET per i nuovi messaggi e per risposte/inoltri, poi <strong>Salva</strong>.</li></ol></details>
+
+  <details><summary>Outlook classico (Windows)</summary><ol>
+    <li>Clicca <strong>Copia la firma</strong>.</li>
+    <li>In Outlook: <strong>File</strong> → <strong>Opzioni</strong> → <strong>Posta</strong> → pulsante <strong>Firme…</strong>.</li>
+    <li><strong>Nuova</strong>, nome "AET", clicca nel riquadro di modifica e incolla con <code>Ctrl+V</code>.</li>
+    <li>In alto a destra scegli l'account e imposta AET come firma per "Nuovi messaggi" e "Risposte/inoltri". <strong>OK</strong>.</li></ol>
+    <p class="note">Se Outlook classico riduce le immagini o cambia i caratteri, usa il file: clicca <strong>Scarica file .html</strong>, aprilo con il browser, seleziona tutto (<code>Ctrl+A</code>), copia e incolla nel riquadro firma.</p></details>
+
+  <details><summary>Apple Mail (Mac)</summary><ol>
+    <li>Clicca <strong>Copia la firma</strong>.</li>
+    <li>In Mail: menu <strong>Mail</strong> → <strong>Impostazioni</strong> → <strong>Firme</strong>.</li>
+    <li>Seleziona l'account a sinistra, premi <strong>+</strong>, dai il nome "AET", e nel riquadro a destra incolla con <code>Cmd+V</code>.</li>
+    <li>Togli la spunta a "Usa sempre il font predefinito del messaggio" se è attiva.</li>
+    <li>In basso, "Scegli firma", seleziona AET.</li></ol></details>
+
+  <details><summary>iPhone e iPad (app Mail)</summary><ol>
+    <li>Apri questa pagina su iPhone, compila i campi e tieni premuto sull'anteprima per selezionarla tutta, poi <strong>Copia</strong>.</li>
+    <li><strong>Impostazioni</strong> → <strong>Mail</strong> → <strong>Firma</strong> → scegli l'account → incolla.</li>
+    <li>Se la formattazione sparisce, scuoti il telefono subito dopo aver incollato e scegli <strong>Annulla cambia attributi</strong>.</li></ol>
+    <p class="note">Mail su iPhone mantiene testo e link ma a volte non le immagini: in quel caso la firma funzionerà comunque, senza logo.</p></details>
+
+  <details><summary>Thunderbird</summary><ol>
+    <li>Clicca <strong>Scarica file .html</strong> e salva il file sul computer.</li>
+    <li>In Thunderbird: <strong>Impostazioni account</strong> → seleziona l'account → sezione "Testo della firma".</li>
+    <li>Spunta <strong>Allega la firma da un file</strong>, clicca <strong>Scegli…</strong> e seleziona il file scaricato.</li></ol></details>
+</section>
+</main>
+<footer>Gruppo AET · pagina riservata al personale · <a href="https://gruppoaet.it">gruppoaet.it</a></footer>
+<script>
+(function(){
+  var SEDI={na:{via:'Via Francesco Crispi, 62 | 80121 Napoli (NA)',tel:'081 2488388'},le:{via:'Via M.Chiatante, 72/74 | 73100 Lecce (LE)',tel:'0832 361323'}};
+  var DISC="Il presente messaggio &egrave; inviato ad uso esclusivo della parte cui &egrave; indirizzato e pu&oacute; contenere informazioni riservate, coperte da segreto professionale o comunque non divulgabili. Qualora Lei non sia il corretto destinatario del messaggio, le &egrave; fatto divieto di qualsiasi uso, divulgazione, copia o riproduzione del medesimo. Se ha ricevuto questo messaggio per errore, la preghiamo di comunicare al mittente l'accaduto e di cancellare dal suo sistema il presente messaggio e gli allegati immediatamente.";
+  var $=function(id){return document.getElementById(id)};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function nbsp(s){return esc(s).replace(/ /g,'&nbsp;')}
+  function fmtTel(s){s=String(s).replace(/[^\d]/g,'');if(!s)return'';if(s.length===10)return s.slice(0,3)+' '+s.slice(3);if(s.length===9)return s.slice(0,2)+' '+s.slice(2);return s}
+  function build(){
+    var tit=$('titolo').value, nome=$('nome').value.trim()||'Nome Cognome', ruolo=$('ruolo').value.trim(), sede=SEDI[$('sede').value];
+    var tel=$('usaTel').checked?sede.tel:'', mob=fmtTel($('mob').value), email=$('email').value.trim();
+    var S10='font-size: 10pt; font-family: Arial, sans-serif; color: rgb(64, 64, 64);', S8='font-size: 8pt; font-family: Arial, sans-serif; color: gray;', S8d='font-size: 8pt; font-family: Arial, sans-serif; color: rgb(64, 64, 64);';
+    var h='<table style="border-collapse: collapse;"><tbody><tr>'+
+      '<td valign="middle" style="padding-right: 10px; border-style: none solid none none; border-right-width: 0.5pt; border-right-color: gray;"><a href="https://gruppoaet.it"><img src="https://gruppoaet.it/firma-mail/logo_aet_group_60_76_blank.png" width="60" height="76" alt="Gruppo AET" style="display:block;border:0"/></a></td>'+
+      '<td style="padding-left: 10px;">'+
+      '<p style="margin: 0cm;"><span style="'+S10+'">'+(tit?esc(tit)+'&nbsp;':'')+'<b>'+esc(nome)+'</b></span></p>'+
+      (ruolo?'<p style="margin: 0cm;"><span style="'+S8+'">'+esc(ruolo)+'</span></p>':'')+
+      '<p style="margin: 5px 0px 0px 0px;"><span style="'+S8+'">'+esc(sede.via)+'</span></p>';
+    var parts=[];
+    if(tel)parts.push('<b>tel:&nbsp;</b><a style="color: gray;">(+39)&nbsp;'+nbsp(tel)+'</a>');
+    if(mob)parts.push('<b>mob:&nbsp;</b><a style="color: gray;">(+39)&nbsp;'+nbsp(mob)+'</a>');
+    if(parts.length)h+='<p style="margin: 0cm;"><span style="'+S8d+'">'+parts.join('&nbsp;|&nbsp;')+'</span></p>';
+    if(email)h+='<p style="margin: 0cm;"><span style="'+S8d+'"><b>email:</b> <a href="mailto:'+esc(email)+'" style="color: gray; text-decoration: none;">'+esc(email)+'</a></span></p>';
+    h+='</td></tr></tbody></table>';
+    if($('usaDisc').checked){
+      h+='<table style="margin: 10px 0px 0px 0px; border-collapse: collapse;"><tbody><tr>'+
+        '<td valign="top"><a href="https://it.linkedin.com/company/gruppo-aet"><img src="https://gruppoaet.it/firma-mail/linkedin_20_21.png" width="20" height="21" alt="LinkedIn" style="display:block;border:0"/></a></td>'+
+        '<td><p style="margin: 0px 0px 0px 5px;"><span style="font-size: 8pt; font-family: Arial, sans-serif; color: rgb(155, 155, 155);">'+DISC+'</span></p></td></tr></tbody></table>';
+    }
+    return h;
+  }
+  function doc(h){return '<html xmlns="http://www.w3.org/1999/xhtml"><head><meta charset="utf-8"><title>Gruppo AET</title></head><body>'+h+'</body></html>'}
+  function render(){$('anteprima').innerHTML=build()}
+  function say(t,ok){var s=$('status');s.textContent=t;s.style.color=ok===false?'#b3261e':'#1b7f4b';clearTimeout(say.t);say.t=setTimeout(function(){s.textContent=''},5000)}
+  document.querySelectorAll('#f input, #f select').forEach(function(el){el.addEventListener('input',render);el.addEventListener('change',render)});
+  $('copia').addEventListener('click',function(){
+    var h=build(), txt=$('anteprima').innerText;
+    var done=function(){say('Firma copiata. Ora incollala nel riquadro della firma del tuo programma di posta.')};
+    if(navigator.clipboard&&window.ClipboardItem){
+      navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([h],{type:'text/html'}),'text/plain':new Blob([txt],{type:'text/plain'})})]).then(done).catch(selCopy);
+    } else selCopy();
+    function selCopy(){var r=document.createRange();r.selectNodeContents($('anteprima'));var s=window.getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');done()}catch(e){say('Non riesco a copiare automaticamente: seleziona l\'anteprima e copia con Ctrl+C.',false)}s.removeAllRanges()}
+  });
+  $('copiaHtml').addEventListener('click',function(){
+    var h=doc(build());
+    (navigator.clipboard?navigator.clipboard.writeText(h):Promise.reject()).then(function(){say('Codice HTML copiato.')},function(){say('Non riesco a copiare: usa "Scarica file .html".',false)});
+  });
+  $('scarica').addEventListener('click',function(){
+    var nome=($('nome').value.trim()||'firma').toUpperCase().replace(/[^A-Z]/g,'');
+    var b=new Blob([doc(build())],{type:'text/html'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='firma_AET_'+(nome||'FIRMA')+'.html';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);say('File scaricato.');
+  });
+  render();
+})();
+</script>
+</body>
+</html>
